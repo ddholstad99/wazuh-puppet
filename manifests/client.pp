@@ -27,6 +27,7 @@ class wazuh::client(
   $agent_package_name          = $::wazuh::params::agent_package,
   $agent_package_version       = 'installed',
   $agent_service_name          = $::wazuh::params::agent_service,
+  $agent_service_ensure        = $::wazuh::params::agent_ensure,
   $manage_client_keys          = 'export',
   $agent_auth_password         = undef,
   $wazuh_manager_root_ca_pem   = undef,
@@ -87,16 +88,24 @@ class wazuh::client(
     }
     default: { fail('OS not supported') }
   }
-
-  service { $agent_service_name:
-    ensure    => running,
-    enable    => true,
-    hasstatus => $service_has_status,
-    pattern   => $agent_service_name,
-    provider  => $ossec_service_provider,
-    require   => Package[$agent_package_name],
+  if $agent_service_ensure {
+    service { $agent_service_name:
+      ensure    => running,
+      enable    => true,
+      hasstatus => $service_has_status,
+      pattern   => $agent_service_name,
+      provider  => $ossec_service_provider,
+      require   => Package[$agent_package_name],
+    }
+  } else {
+    service { $agent_service_name:
+      enable    => true,
+      hasstatus => $service_has_status,
+      pattern   => $agent_service_name,
+      provider  => $ossec_service_provider,
+      require   => Package[$agent_package_name],
+    }   
   }
-
   concat { 'ossec.conf':
     path    => $wazuh::params::config_file,
     owner   => $wazuh::params::config_owner,

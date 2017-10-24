@@ -39,11 +39,12 @@ class wazuh::params {
       case $::osfamily {
         'Debian': {
 
-          $agent_service  = 'wazuh-agent'
-          $agent_package  = 'wazuh-agent'
-          $service_has_status  = false
+          $agent_service          = 'wazuh-agent'
+          $agent_service_ensure   = true
+          $agent_package          = 'wazuh-agent'
+          $service_has_status     = false
           $ossec_service_provider = undef
-          $api_service_provider = undef
+          $api_service_provider   = undef
 
           $default_local_files = {
             '/var/log/syslog'                      => 'syslog',
@@ -97,15 +98,16 @@ class wazuh::params {
         }
         'Linux', 'RedHat': {
 
-          $agent_service  = 'wazuh-agent'
-          $agent_package  = 'wazuh-agent'
-          $server_service = 'wazuh-manager'
-          $server_package = 'wazuh-manager'
-          $api_service = 'wazuh-api'
-          $api_package = 'wazuh-api'
-          $service_has_status  = true
+          $agent_service          = 'wazuh-agent'
+          $agent_service_ensure   = true
+          $agent_package          = 'wazuh-agent'
+          $server_service         = 'wazuh-manager'
+          $server_package         = 'wazuh-manager'
+          $api_service            = 'wazuh-api'
+          $api_package            = 'wazuh-api'
+          $service_has_status     = true
           $ossec_service_provider = 'redhat'
-          $api_service_provider = 'redhat'
+          $api_service_provider   = 'redhat'
 
           $default_local_files = {
             '/var/log/messages'         => 'syslog',
