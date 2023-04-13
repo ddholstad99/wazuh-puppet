@@ -5,7 +5,7 @@ class wazuh::params_manager {
     'Linux': {
 
     # Installation
-      $server_package_version                          = '4.5.0-1'
+      $server_package_version                          = '4.6.0-1'
 
       $manage_repos                                    = true
       $manage_firewall                                 = false
@@ -13,6 +13,8 @@ class wazuh::params_manager {
     ### Ossec.conf blocks
 
       ## Global
+      $ossec_logall                                    = 'no'
+      $ossec_logall_json                               = 'no'
       $ossec_emailnotification                         = false
       $ossec_emailto                                   = ['recipient@example.wazuh.com']
       $ossec_smtp_server                               = 'smtp.example.wazuh.com'
@@ -395,9 +397,10 @@ class wazuh::params_manager {
       $remote_commands_localfile_exceptions = []
       $remote_commands_wodle = 'yes'
       $remote_commands_wodle_exceptions = []
+      $limits_eps = 'yes'
 
       # Wazuh API template path
-      $wazuh_api_template = 'wazuh/wazuh_api.erb'
+      $wazuh_api_template = 'wazuh/wazuh_api_yml.erb'
 
 
       case $::osfamily {
@@ -571,7 +574,7 @@ class wazuh::params_manager {
       $keys_group = 'Administrators'
 
       $agent_service  = 'WazuhSvc'
-      $agent_package  = 'Wazuh Agent 4.5.0'
+      $agent_package  = 'Wazuh Agent 4.6.0'
       $server_service = ''
       $server_package = ''
       $api_service = ''

@@ -13,6 +13,8 @@ class wazuh::manager (
 
       ## Global
 
+      $ossec_logall                     = $wazuh::params_manager::ossec_logall,
+      $ossec_logall_json                = $wazuh::params_manager::ossec_logall_json,
       $ossec_emailnotification          = $wazuh::params_manager::ossec_emailnotification,
       $ossec_emailto                    = $wazuh::params_manager::ossec_emailto,
       $ossec_smtp_server                = $wazuh::params_manager::ossec_smtp_server,
@@ -322,6 +324,7 @@ class wazuh::manager (
       $remote_commands_localfile_exceptions     = $::wazuh::params_manager::remote_commands_localfile_exceptions,
       $remote_commands_wodle                    = $::wazuh::params_manager::remote_commands_wodle,
       $remote_commands_wodle_exceptions         = $::wazuh::params_manager::remote_commands_wodle_exceptions,
+      $limits_eps                               = $::wazuh::params_manager::limits_eps,
 
       $wazuh_api_template                       = $::wazuh::params_manager::wazuh_api_template,
 
@@ -435,7 +438,11 @@ class wazuh::manager (
   case $::operatingsystem{
     'RedHat', 'OracleLinux':{
       $apply_template_os = 'rhel'
-      if ( $::operatingsystemrelease     =~ /^7.*/ ){
+      if ( $::operatingsystemrelease =~ /^9.*/ ){
+        $rhel_version = '9'
+      }elsif ( $::operatingsystemrelease =~ /^8.*/ ){
+        $rhel_version = '8'
+      }elsif ( $::operatingsystemrelease =~ /^7.*/ ){
         $rhel_version = '7'
       }elsif ( $::operatingsystemrelease =~ /^6.*/ ){
         $rhel_version = '6'
