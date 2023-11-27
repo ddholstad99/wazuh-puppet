@@ -465,7 +465,7 @@ class wazuh::params_agent {
             }
             'Rocky': {
               if ( $::operatingsystemrelease =~ /^8.*/ ) {
-                $ossec_service_provider = 'systemd:wq'
+                $ossec_service_provider = 'systemd'
               }
             }
             default: { fail('This ossec module has not been tested on your distribution') }
