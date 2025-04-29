@@ -27,7 +27,7 @@ class wazuh::repo (
         require => Exec['import-wazuh-key'],
       }
       case $::lsbdistcodename {
-        /(jessie|wheezy|stretch|buster|bullseye|bookworm|sid|precise|trusty|vivid|wily|xenial|yakketi|bionic|focal|groovy|jammy|}noble)/: {
+        /(jessie|wheezy|stretch|buster|bullseye|bookworm|sid|precise|trusty|vivid|wily|xenial|yakketi|bionic|focal|groovy|jammy|noble)/: {
           apt::source { 'wazuh':
             ensure   => present,
             comment  => 'This is the WAZUH Ubuntu repository',
@@ -42,7 +42,7 @@ class wazuh::repo (
           }
           # Manage the APT source list file content using concat
           concat { '/etc/apt/sources.list.d/wazuh.list':
-            ensure  => present,
+#             ensure  => present,
             owner   => 'root',
             group   => 'root',
             mode    => '0644',
