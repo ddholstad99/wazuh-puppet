@@ -14,8 +14,8 @@ class wazuh::agent (
 
   # Authd registration options
   $manage_client_keys                                 = $wazuh::params_agent::manage_client_keys,
-  String $agent_name                                  = $wazuh::params_agent::agent_name,
-  String $agent_group                                 = $wazuh::params_agent::agent_group,
+  Optional[String] $agent_name                        = $wazuh::params_agent::agent_name,
+  Optional[String] $agent_group                       = $wazuh::params_agent::agent_group,
   $agent_address                                      = $wazuh::params_agent::agent_address,
   Optional[String] $wazuh_agent_cert                  = $wazuh::params_agent::wazuh_agent_cert,
   Optional[String] $wazuh_agent_key                   = $wazuh::params_agent::wazuh_agent_key,
