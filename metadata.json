@@ -122,7 +122,7 @@
     "4.8",
     "wazuh"
   ],
-  "pdk-version": "1.14.1",
-  "template-url": "pdk-default#1.10.0",
-  "template-ref": "1.10.0-0-gbba9ac3"
+  "pdk-version": "3.4.0",
+  "template-url": "pdk-default#3.4.0",
+  "template-ref": "tags/3.4.0-0-gd3cc13f"
 }

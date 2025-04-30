@@ -535,7 +535,7 @@ class wazuh::agent (
 
         # https://documentation.wazuh.com/4.0/user-manual/registering/manager-verification/agent-verification-registration.html
         if ($wazuh_agent_cert != undef) and ($wazuh_agent_key != undef) {
-#          validate_legacy(String, 'validate_string', $wazuh_agent_cert)
+          validate_legacy(String, 'validate_string', $wazuh_agent_cert)
 #          validate_legacy(String, 'validate_string', $wazuh_agent_key)
           file { '/var/ossec/etc/sslagent.cert':
             owner   => $wazuh::params_agent::keys_owner,
