@@ -604,15 +604,17 @@ class wazuh::manager (
 
   exec { 'Generate the wazuh-keystore (username)':
 
-    path      => ['/var/ossec/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin'],
-    command   => "wazuh-keystore -f indexer -k username -v ${vulnerability_indexer_username}",
-    subscribe => Concat['manager_ossec.conf'],
+    path        => ['/var/ossec/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin'],
+    command     => "wazuh-keystore -f indexer -k username -v ${vulnerability_indexer_username}",
+    subscribe   => Concat['manager_ossec.conf'],
+    refreshonly => true,
   }
 
   exec { 'Generate the wazuh-keystore (password)':
-    path      => ['/var/ossec/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin'],
-    command   => "wazuh-keystore -f indexer -k password -v ${vulnerability_indexer_password}",
-    subscribe => Concat['manager_ossec.conf'],
+    path        => ['/var/ossec/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin'],
+    command     => "wazuh-keystore -f indexer -k password -v ${vulnerability_indexer_password}",
+    subscribe   => Concat['manager_ossec.conf'],
+    refreshonly => true,
   }
 
   if ( $manage_client_keys == 'yes') {
