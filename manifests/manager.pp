@@ -362,7 +362,7 @@ class wazuh::manager (
   # assign version according to the package manager
   case $facts['os']['family'] {
     'Debian': {
-      $server_version_install = "${server_package_version}-*"
+      $server_version_install = "${server_package_version}"
     }
     'Linux', 'RedHat', default: {
       $server_version_install = $server_package_version
